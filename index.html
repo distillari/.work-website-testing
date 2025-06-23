@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Ari | Currently Employed</title>
   <style>
-    /* Full-screen animated paisley background */
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
       height: 100vh;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
+      font-family: 'Segoe UI', sans-serif;
       color: white;
     }
-
-    body::before {
-      content: "";
+    #bg-video {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('https://media.giphy.com/media/3o7TKROhiC3n0eJv8k/giphy.gif');
-      background-size: cover;
-      background-position: center;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
       opacity: 0.3;
       z-index: -1;
     }
-
     .container {
       text-align: center;
       padding: 2rem;
       max-width: 600px;
-      background-color: rgba(0, 0, 0, 0.7);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.6);
       border-radius: 16px;
       backdrop-filter: blur(4px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
     }
-
-    h1 {
-      font-size: 2.8rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-    }
-
-    input[type="email"] {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-      width: 60%;
-    }
-
-    button {
+    h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    p { font-size: 1.3rem; margin-bottom: 2rem; }
+    input, button {
       padding: 0.5rem 1rem;
       font-size: 1rem;
-      border: none;
       border-radius: 6px;
+      border: none;
+    }
+    input { width: 60%; }
+    button {
       background-color: #ff9800;
       color: white;
-      cursor: pointer;
       margin-left: 0.5rem;
+      cursor: pointer;
     }
-
     .confirmation {
       margin-top: 1rem;
       font-size: 1rem;
       color: #a0f0a0;
       display: none;
     }
+    .attribution {
+      position: fixed;
+      bottom: 0; right: 0;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.7);
+      padding: 0.5rem;
+    }
+    .attribution a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+  <video autoplay muted loop id="bg-video">
+    <source src="fractal-ornament.mp4" type="video/mp4">
+    Your browser doesn't support HTML5 video.
+  </video>
+
   <div class="container">
     <h1>Hi, I'm Ari</h1>
-    <p>I'm currently employed and not looking for new opportunities at this time. Please check back later!</p>
-
+    <p>Thank you for visiting my professional website. I'm currently employed and not looking for new opportunities at this time. Please check back later!</p>
     <div>
       <input type="email" id="email" placeholder="Enter your email" />
       <button onclick="notify()">Notify Me Later</button>
-      <div class="confirmation" id="confirmation">Groovy! I'll keep you posted.</div>
+      <div class="confirmation" id="confirmation">Your email has been deleted, you will not be informed of any changes.</div>
     </div>
+  </div>
+
+  <div class="attribution">
+    Video: “Fractal sequence patterns 3D. Beautiful bright ornament” from
+    <a href="https://www.vecteezy.com/video/46549776-fractal-sequence-patterns-3d-beautiful-bright-ornament" target="_blank">
+      Vecteezy
+    </a>
   </div>
 
   <script>
     function notify() {
-      const emailInput = document.getElementById('email');
-      const confirmation = document.getElementById('confirmation');
-      if (emailInput.value.trim()) {
-        confirmation.style.display = 'block';
-        emailInput.value = '';
+      const email = document.getElementById('email'),
+            msg = document.getElementById('confirmation');
+      if (email.value.trim()) {
+        msg.style.display = 'block';
+        email.value = '';
       } else {
-        confirmation.style.display = 'none';
+        msg.style.display = 'none';
         alert('Please enter a valid email address.');
       }
     }
